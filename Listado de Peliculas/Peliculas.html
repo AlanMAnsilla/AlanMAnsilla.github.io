@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxorys-Listado de Peliculas</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<head>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+        
+        body {
+            background-color: black;
+            color: white;
+            display: flex;
+        }
+        /* Navbar a la izquierda */
+        
+        .sidebar {
+            width: 5%;
+            background: black;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            height: 100vh;
+            transition: width 0.3s;
+            z-index: 1;
+        }
+        
+        .sidebar i {
+            color: gray;
+            font-size: 22px;
+            cursor: pointer;
+        }
+        
+        .sidebar i:hover {
+            color: red;
+            transition: all 0.8s cubic-bezier(0.15, 0.83, 0.66, 1);
+            cursor: pointer;
+        }
+        /**********/
+        
+        .sidebar:hover {
+            width: 300px;
+            align-items: flex-start;
+            padding-left: 20px;
+            background-color: rgba(0, 0, 0, 0.884);
+            z-index: 1000;
+            position: absolute;
+        }
+        
+        .sidebar a:hover {
+            color: red;
+            transition: all 0.8s cubic-bezier(0.15, 0.83, 0.66, 1);
+        }
+        
+        .sidebar a span {
+            display: none;
+            color: white;
+            font-size: 18px;
+        }
+        
+        .sidebar a span:hover {
+            display: inline;
+            color: #bf0000;
+            font-size: 50px;
+        }
+        /* Contenedor principal */
+        
+        .main-content {
+            margin-left: 70px;
+            padding: 20px;
+            width: calc(100% - 70px);
+            display: flex;
+            gap: 20px;
+        }
+        /* Columna izquierda: Teclado y Preview */
+        
+        .left-column {
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+        }
+        /* Teclado en pantalla */
+        
+        .keyboard {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 5px;
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+        
+        .key {
+            background-color: #444;
+            border: none;
+            padding: 10px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .key:hover {
+            background-color: #555;
+        }
+        /* Estilo especial para barra espaciadora y backspace */
+        
+        .special-key {
+            grid-column: span 2;
+            /* Ocupa 2 columnas para que sea más ancho */
+            background-color: #444;
+            padding: 10px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .special-key:hover {
+            background-color: #555;
+        }
+        /* Preview de la película */
+        
+        .preview {
+            width: 100%;
+            height: 300px;
+            background-color: #222;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .preview img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        /* Columna derecha: Buscador y Lista de Películas */
+        
+        .right-column {
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+        }
+        /* Barra de búsqueda */
+        
+        .search-bar {
+            width: 100%;
+            padding: 10px;
+            background-color: #333;
+            border: none;
+            color: white;
+            font-size: 18px;
+            outline: none;
+            margin-bottom: 20px;
+        }
+        /* Carátulas de películas */
+        
+        .movies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 5px;
+        }
+        
+        .movie-card {
+            width: 100%;
+            height: 300px;
+            background-color: #333;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .movie-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .movie-card span {
+            position: absolute;
+            bottom: 5px;
+            left: 5px;
+            font-size: 14px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 2px 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar a la izquierda -->
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+        <a href="javascript:(window.location.href =window.location.href)"><i class="fas fa-home"></i><span>Buscar</span></a>
+        <a href=""><i class="fas fa-search"></i><span>Buscar</span></a>
+        <a href=""><i class="fas fa-bell"></i><span>Buscar</span></a>
+        <a href=""><i class="fas fa-film"></i><span>Buscar</span></a>
+        <a href=""><i class="fa-solid fa-video"></i><span>Buscar</span></a>
+        <a href=""><i class="fa-solid fa-tv"></i><span>Buscar</span></a>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="main-content">
+        <!-- Columna izquierda: Teclado y Preview -->
+        <div class="left-column">
+            <!-- Teclado en pantalla -->
+            <div class="keyboard" id="keyboard">
+                <!-- Las teclas se generarán con JavaScript -->
+            </div>
+
+            <!-- Preview de la película seleccionada -->
+            <div class="preview" id="preview">
+                <img id="previewImage" src="" alt="Preview">
+            </div>
+        </div>
+
+        <!-- Columna derecha: Buscador y Lista de Películas -->
+        <div class="right-column">
+            <!-- Barra de búsqueda -->
+            <input type="text" class="search-bar" id="searchInput" placeholder="Buscar películas...">
+
+            <!-- Grid de películas -->
+            <div class="movies-grid" id="moviesGrid">
+                <!-- Las carátulas se generarán con JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Lista de películas (simulada)
+        const movies = [{
+            title: "Alias",
+            image: "https://cuevana.biz/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Foriginal%2FdIvztDNQlqFmc10vkHSk4euwFUp.jpg&w=256&q=75"
+        }, {
+            title: "Asesino Solitario",
+            image: "https://via.placeholder.com/150x220.png?text=Asesino+Solitario"
+        }, {
+            title: "La Bestia",
+            image: "https://via.placeholder.com/150x220.png?text=La+Bestia"
+        }, {
+            title: "Ava",
+            image: "https://via.placeholder.com/150x220.png?text=Ava"
+        }, {
+            title: "Anna",
+            image: "https://via.placeholder.com/150x220.png?text=Anna"
+        }, {
+            title: "Anaconda 2",
+            image: "https://via.placeholder.com/150x220.png?text=Anaconda+2"
+        }, ];
+
+        // Generar el teclado
+        const keyboard = document.getElementById('keyboard');
+        const searchInput = document.getElementById('searchInput');
+        const keys = 'abcdefghijklmnopqrstuvwxyz0123456789'.split('');
+
+        // Agregar teclas normales
+        keys.forEach(key => {
+            const button = document.createElement('button');
+            button.classList.add('key');
+            button.textContent = key;
+            button.addEventListener('click', () => {
+                searchInput.value += key;
+                filterMovies(); // Filtrar películas al agregar una letra
+            });
+            keyboard.appendChild(button);
+        });
+
+        // Agregar barra espaciadora
+        const spaceButton = document.createElement('button');
+        spaceButton.classList.add('special-key');
+        spaceButton.textContent = 'Space';
+        spaceButton.addEventListener('click', () => {
+            searchInput.value += ' ';
+            filterMovies(); // Filtrar películas al agregar un espacio
+        });
+        keyboard.appendChild(spaceButton);
+
+        // Agregar tecla de borrar (backspace)
+        const backspaceButton = document.createElement('button');
+        backspaceButton.classList.add('special-key');
+        backspaceButton.textContent = 'Backspace';
+        backspaceButton.addEventListener('click', () => {
+            searchInput.value = searchInput.value.slice(0, -1); // Borrar la última letra
+            filterMovies(); // Filtrar películas después de borrar
+        });
+        keyboard.appendChild(backspaceButton);
+
+        // Generar las carátulas de las películas
+        const moviesGrid = document.getElementById('moviesGrid');
+
+        function displayMovies(movieList) {
+            moviesGrid.innerHTML = ''; // Limpiar el grid
+            movieList.forEach(movie => {
+                const movieCard = document.createElement('div');
+                movieCard.classList.add('movie-card');
+                movieCard.innerHTML = `
+                    <img src="${movie.image}" alt="${movie.title}">
+                    <span>${movie.title}</span>
+                `;
+                movieCard.addEventListener('click', () => showPreview(movie));
+                moviesGrid.appendChild(movieCard);
+            });
+        }
+
+        // Filtrar películas mientras se escribe
+        function filterMovies() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const filteredMovies = movies.filter(movie =>
+                movie.title.toLowerCase().includes(searchTerm)
+            );
+            displayMovies(filteredMovies);
+        }
+
+        // Mostrar preview de la película seleccionada
+        const preview = document.getElementById('preview');
+        const previewImage = document.getElementById('previewImage');
+
+        function showPreview(movie) {
+            preview.style.display = 'flex';
+            previewImage.src = movie.image;
+            previewImage.alt = movie.title;
+        }
+
+        // Evento para filtrar al escribir directamente en el input
+        searchInput.addEventListener('input', filterMovies);
+
+        // Mostrar todas las películas al cargar
+        displayMovies(movies);
+    </script>
+</body>
+
+</html>

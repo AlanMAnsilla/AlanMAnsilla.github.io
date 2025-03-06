@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxorys - Listado de Series</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Incluir Plyr CSS -->
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        body {
+            background-color: black;
+            color: white;
+            display: flex;
+            margin: 0;
+            overflow-x: hidden;
+        }
+        /*****************************/
+        
+        .logo_astro {
+            margin-left: 60px;
+            width: 300px;
+            height: 100px;
+            position: absolute;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .logo_astro img {
+            margin: auto;
+            width: 50%;
+            height: 100px;
+        }
+        
+        .logo_astro p {
+            margin: auto;
+            text-align: center;
+            font-size: 25px;
+            margin-left: 1px;
+            font-weight: bold;
+            color: #bf0000;
+        }
+        
+        .logo_astro span {
+            margin: auto;
+            text-align: center;
+            font-size: 25px;
+            margin-left: 1px;
+            font-weight: bold;
+        }
+        /* Navbar a la izquierda (Sidebar) */
+        
+        .sidebar_container {
+            width: 5%;
+        }
+        
+        .sidebar {
+            width: 100px;
+            background: black;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            height: 100vh;
+            transition: width 0.3s;
+            z-index: 1;
+            text-align: center;
+        }
+        
+        .sidebar a {
+            text-decoration: none;
+        }
+        
+        .sidebar i {
+            width: 30px;
+            color: gray;
+            font-size: 22px;
+            cursor: pointer;
+        }
+        
+        .sidebar i:hover {
+            color: red;
+            transition: all 0.8s cubic-bezier(0.15, 0.83, 0.66, 1);
+            cursor: pointer;
+        }
+        /**********/
+        
+        .sidebar:hover {
+            width: 300px;
+            align-items: flex-start;
+            padding-left: 20px;
+            background-color: rgba(0, 0, 0, 0.884);
+            z-index: 1000;
+            position: absolute;
+            padding-left: 30px;
+            transition: 150ms;
+        }
+        
+        .sidebar a:hover {
+            color: red;
+            transition: all 0.8s cubic-bezier(0.15, 0.83, 0.66, 1);
+        }
+        
+        .sidebar a span {
+            display: none;
+            color: white;
+            font-size: 18px;
+        }
+        
+        .sidebar:hover a span {
+            display: inline;
+            color: white;
+            font-size: 25px;
+            margin-left: 25px;
+        }
+        /* Contenedor principal */
+        
+        .main-content {
+            margin-left: 70px;
+            padding: 20px;
+            width: calc(100% - 70px);
+            display: flex;
+            gap: 20px;
+        }
+        /* Columna izquierda: Teclado y Lista de Series */
+        
+        .left-column {
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            height: 95vh;
+        }
+        /* Teclado en pantalla */
+        
+        .keyboard {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 5px;
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 20px;
+            height: 300px;
+            margin-top: 60px;
+        }
+        
+        .key {
+            background-color: #444;
+            border: none;
+            padding: 10px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .key:hover {
+            background-color: #555;
+            background-color: #bf0000;
+        }
+        /* Estilo especial para barra espaciadora y backspace */
+        
+        .special-key {
+            grid-column: span 2;
+            /* Ocupa 2 columnas para que sea más ancho */
+            background-color: #444;
+            padding: 10px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .special-key:hover {
+            background-color: #555;
+            background-color: #bf0000;
+        }
+        /* Sección de lista de series */
+        
+        .series-list {
+            width: 100%;
+            height: 300px;
+            background-color: #222;
+            padding: 20px;
+            overflow-y: auto;
+            /* Para scroll si hay muchas series */
+        }
+        
+        .series-list ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .series-list li {
+            margin: 10px 0;
+            color: #fff;
+            cursor: default;
+            font-size: 20px;
+            font-weight: bold;
+            /* No interactúa con clics */
+        }
+        /* Columna derecha: Buscador y Lista de Series (Imágenes) */
+        
+        .right-column {
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            height: 95vh;
+        }
+        /* Barra de búsqueda */
+        
+        .barra_busqueda {
+            display: flex;
+        }
+        
+        .icono_busqueda {
+            width: 4%;
+            margin-right: 1%;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .barra_busqueda i {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            margin: auto;
+            color: #bf0000;
+            font-size: 30px;
+        }
+        
+        .search-bar {
+            width: 95%;
+            padding: 10px;
+            background-color: #333;
+            border: none;
+            color: white;
+            font-size: 18px;
+            outline: none;
+            margin-bottom: 20px;
+        }
+        /* Carátulas de series */
+        
+        .series-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 5px;
+            overflow-y: scroll;
+        }
+        
+        .series-card {
+            width: 100%;
+            height: 300px;
+            background-color: #333;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .series-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .series-card span {
+            position: absolute;
+            bottom: 5px;
+            left: 5px;
+            font-size: 14px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 2px 5px;
+        }
+        /* Pop-up para detalles de la serie */
+        
+        .series-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .popup-content {
+            background-color: #222;
+            width: 80%;
+            height: 80%;
+            display: flex;
+            border-radius: 10px;
+            overflow: hidden;
+            transform: scale(0.7);
+            /* Escala inicial para la animación */
+            opacity: 0;
+            /* Opacidad inicial para la animación */
+            animation: popupFadeIn 0.5s ease-out forwards;
+            /* Animación al abrir */
+        }
+        
+        @keyframes popupFadeIn {
+            from {
+                transform: scale(0.7);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .popup-left {
+            width: 30%;
+            padding: 20px;
+            background-color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .popup-left img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        
+        .popup-left .series-info {
+            font-size: 16px;
+            color: #ccc;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .popup-left .seasons-list {
+            width: 100%;
+            background-color: #444;
+            padding: 10px;
+            overflow-y: auto;
+            max-height: 400px;
+        }
+        
+        .popup-left .seasons-list ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .popup-left .seasons-list li {
+            margin: 10px 0;
+            color: #fff;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 25px;
+        }
+        
+        .popup-left .seasons-list li:hover {
+            color: red;
+        }
+        
+        .popup-left .seasons-list li.active {
+            color: red;
+            font-weight: bold;
+        }
+        
+        .popup-right {
+            width: 70%;
+            padding: 20px;
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .popup-right .selected-season {
+            font-size: 20px;
+            color: #fff;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .popup-episodes {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            overflow-y: auto;
+            max-height: 600px;
+        }
+        
+        .episode-card {
+            background-color: #bf0000;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 14px;
+            text-align: center;
+            padding: 5px;
+            font-weight: bold;
+        }
+        
+        .episode-card:hover {
+            background-color: white;
+            color: #bf0000;
+        }
+        /* Logo ASTRO TV en la esquina inferior derecha del pop-up */
+        
+        .astro-logo {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            z-index: 1001;
+            width: 300px;
+            height: 100px;
+            margin-left: 60px;
+        }
+        
+        .astro-logo img {
+            margin: auto;
+            width: 50%;
+            height: 100px;
+        }
+        
+        .astro-logo p {
+            margin: auto;
+            text-align: center;
+            font-size: 25px;
+            margin-left: 1px;
+            font-weight: bold;
+            color: #bf0000;
+        }
+        
+        .astro-logo span {
+            margin: auto;
+            text-align: center;
+            font-size: 25px;
+            margin-left: 1px;
+            font-weight: bold;
+        }
+        /* Reproductor en pantalla completa (usando Plyr) */
+        
+        .video-player {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .plyr__video-wrapper {
+            width: 100%;
+            height: 100%;
+        }
+        /* Spinner de carga */
+        
+        .loading-spinner {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2000;
+        }
+        
+        .loading-spinner::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 50px;
+            border: 5px solid #bf0000;
+            border-top: 5px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+        /* Estilos personalizados para los controles de Plyr */
+        
+        .plyr--full-ui input[type=range] {
+            accent-color: #bf0000;
+            /* Color de los controles deslizantes (rojo) */
+        }
+        
+        .plyr__controls {
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 5px;
+            padding: 10px;
+        }
+        
+        .plyr__control--overlaid {
+            background-color: #bf0000;
+            /* Botón de play/pause overlay en rojo */
+            border-radius: 50%;
+            padding: 15px;
+        }
+        
+        .plyr__control:hover,
+        .plyr__control--pressed {
+            background-color: #ff4040;
+            /* Hover en rojo más claro */
+            color: white;
+        }
+        
+        .plyr__control {
+            color: white;
+            /* Color de los íconos por defecto */
+        }
+        
+        .video-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+        
+        .video-controls button {
+            background-color: #444;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        .video-controls button:hover {
+            background-color: #555;
+        }
+        /*scroll series*/
+        
+        body {
+            --sb-track-color: #232e33;
+            --sb-thumb-color: #bf0000;
+            --sb-size: 6px;
+        }
+        
+        .series-grid::-webkit-scrollbar {
+            width: var(--sb-size)
+        }
+        
+        .series-grid::-webkit-scrollbar-track {
+            background: var(--sb-track-color);
+            border-radius: 3px;
+        }
+        
+        .series-grid::-webkit-scrollbar-thumb {
+            background: var(--sb-thumb-color);
+            border-radius: 3px;
+        }
+        
+        @supports not selector(::-webkit-scrollbar) {
+            .series-grid {
+                scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logo_astro"><img src="/Prueba2/Astro Tv.png" alt="">
+        <p>|</p><span>Series</span></div>
+    <!-- Sidebar (Navbar a la izquierda) -->
+    <div class="sidebar_container">
+        <div class="sidebar">
+            <a href="/Prueba2/indexNetflix.html"><i class="fas fa-home"></i><span>Inicio</span></a>
+            <a href=""><i class="fas fa-search"></i><span>Buscar</span></a>
+            <a href=""><i class="fas fa-bell"></i><span>Notificaciones</span></a>
+            <a href="/Listado de Peliculas/Pelis-pruebas.html"><i class="fas fa-film"></i><span>Peliculas</span></a>
+            <a href="#"><i class="fa-solid fa-video"></i><span>Series</span></a>
+            <a href=""><i class="fa-solid fa-tv"></i><span>Tv en vivo</span></a>
+        </div>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="main-content">
+        <!-- Columna izquierda: Teclado y Lista de Series -->
+        <div class="left-column">
+            <!-- Teclado en pantalla -->
+            <div class="keyboard" id="keyboard">
+                <!-- Las teclas se generarán con JavaScript -->
+            </div>
+
+            <!-- Lista de series (Texto) -->
+            <div class="series-list" id="seriesList">
+                <!-- La lista se generarán con JavaScript -->
+            </div>
+        </div>
+
+        <!-- Columna derecha: Buscador y Lista de Series (Imágenes) -->
+        <div class="right-column">
+            <!-- Barra de búsqueda -->
+            <div class="barra_busqueda">
+                <div class="icono_busqueda"><i class="fa-solid fa-magnifying-glass fa-beat-fade"></i></div><input type="text" class="search-bar" id="searchInput" placeholder="Buscar series...">
+            </div>
+            <!-- Grid de series (Imágenes) -->
+            <div class="series-grid" id="seriesGrid">
+                <!-- Las carátulas se generarán con JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Pop-up para detalles de la serie -->
+    <div class="series-popup" id="seriesPopup">
+        <div class="popup-content">
+            <div class="popup-left">
+                <img id="seriesLogo" src="" alt="Logo Serie">
+                <div class="series-info" id="seriesInfo"></div>
+                <div class="seasons-list" id="seasonsList">
+                    <!-- Las temporadas se generarán con JavaScript -->
+                </div>
+            </div>
+            <div class="popup-right">
+                <div class="selected-season" id="selectedSeason"></div>
+                <div class="popup-episodes" id="episodesGrid">
+                    <!-- Los capítulos se generarán con JavaScript -->
+                </div>
+            </div>
+            <div class="astro-logo"><img src="/Prueba2/Astro Tv.png" alt="">
+                <p>|</p><span>Series</span></div>
+        </div>
+    </div>
+
+    <!-- Reproductor en pantalla completa (usando Plyr) -->
+    <div class="video-player" id="videoPlayer">
+        <div class="plyr__video-wrapper">
+            <div id="plyrElement"></div>
+        </div>
+        <div class="video-controls">
+            <button id="closeVideoBtn">Cerrar</button>
+        </div>
+    </div>
+
+    <!-- Spinner de carga -->
+    <div class="loading-spinner" id="loadingSpinner"></div>
+
+    <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+    <script src=""></script>
+    <script>
+        // Lista de series (simulada) con logos, carátulas, temporadas, capítulos, iframes/src y detalles adicionales
+        const series = [{
+                title: "Breaking Bad",
+                image: "https://cuevana.biz/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Foriginal%2FineLOBPG8AZsluYwnkMpHRyu7L.jpg&w=256&q=75",
+                logo: "https://1000marcas.net/wp-content/uploads/2023/05/Breaking-Bad-Logo.png",
+                year: "2008",
+                seasons: [{
+                    season: "Temporada 1",
+                    episodes: [{
+                        title: "Episodio 1",
+                        type: "iframe", // O "src" para HTML5
+                        url: "https://extrfast.com/e/ix9i0ldeguy8" // URL completa del iframe o src con autoplay
+                    }, {
+                        title: "Episodio 2",
+                        type: "iframe",
+                        url: "https://player.vimeo.com/video/76979871?autoplay=1"
+                    }, {
+                        title: "Episodio 3",
+                        type: "iframe",
+                        url: "https://player.vimeo.com/video/76979871?autoplay=1"
+                    }, {
+                        title: "Episodio 4",
+                        type: "iframe",
+                        url: "https://player.vimeo.com/video/76979871?autoplay=1"
+                    }, {
+                        title: "Episodio 5",
+                        type: "iframe",
+                        url: "https://player.vimeo.com/video/76979871?autoplay=1"
+                    }, {
+                        title: "Episodio 6",
+                        type: "iframe",
+                        url: "https://player.vimeo.com/video/76979871?autoplay=1"
+                    }, {
+                        title: "Episodio 7",
+                        type: "iframe",
+                        url: "https://player.vimeo.com/video/76979871?autoplay=1"
+                    }]
+                }, {
+                    season: "Temporada 2",
+                    episodes: [{
+                        title: "Episodio 1",
+                        type: "iframe",
+                        url: "https://player.vimeo.com/video/76979871?autoplay=1"
+                    }, {
+                        title: "Episodio 2",
+                        type: "iframe",
+                        url: "https://player.vimeo.com/video/76979871?autoplay=1"
+                    }]
+                }, {
+                    season: "Temporada 3",
+                    episodes: [{
+                        title: "Episodio 1",
+                        type: "iframe",
+                        url: "https://player.vimeo.com/video/76979871?autoplay=1"
+                    }, {
+                        title: "Episodio 2",
+                        type: "iframe",
+                        url: "https://player.vimeo.com/video/76979871?autoplay=1"
+                    }]
+                }, {
+                    season: "Temporada 4",
+                    episodes: [{
+                        title: "Episodio 1",
+                        type: "iframe",
+                        url: "https://player.vimeo.com/video/76979871?autoplay=1"
+                    }, {
+                        title: "Episodio 2",
+                        type: "iframe",
+                        url: "https://player.vimeo.com/video/76979871?autoplay=1"
+                    }]
+                }, {
+                    season: "Temporada 5",
+                    episodes: [{
+                        title: "Episodio 1",
+                        type: "iframe",
+                        url: "https://player.vimeo.com/video/76979871?autoplay=1"
+                    }, {
+                        title: "Episodio 2",
+                        type: "iframe",
+                        url: "https://player.vimeo.com/video/76979871?autoplay=1"
+                    }]
+                }]
+            }, {
+                title: "Stranger Things",
+                image: "https://cuevana.biz/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Foriginal%2FuOOtwVbSr4QDjAGIifLDwpb2Pdl.jpg&w=256&q=75",
+                logo: "https://lostmediawiki.com/w/images/3/39/Stranger_Things_Logo.png",
+                year: "2016",
+                seasons: [{
+                    season: "Temporada 1",
+                    episodes: [{
+                        title: "Episodio 1",
+                        type: "iframe",
+                        url: "https://player.vimeo.com/video/76979871?autoplay=1"
+                    }, {
+                        title: "Episodio 2",
+                        type: "iframe",
+                        url: "https://player.vimeo.com/video/76979871?autoplay=1"
+                    }]
+                }, {
+                    season: "Temporada 2",
+                    episodes: [{
+                        title: "Episodio 1",
+                        type: "iframe",
+                        url: "https://player.vimeo.com/video/76979871?autoplay=1"
+                    }, {
+                        title: "Episodio 2",
+                        type: "iframe",
+                        url: "https://player.vimeo.com/video/76979871?autoplay=1"
+                    }]
+                }]
+            },
+            // Agrega más series aquí según necesites
+        ];
+
+        // Generar el teclado
+        const keyboard = document.getElementById('keyboard');
+        const searchInput = document.getElementById('searchInput');
+        const keys = 'abcdefghijklmnopqrstuvwxyz0123456789'.split('');
+
+        // Agregar teclas normales
+        keys.forEach(key => {
+            const button = document.createElement('button');
+            button.classList.add('key');
+            button.textContent = key;
+            button.addEventListener('click', () => {
+                searchInput.value += key;
+                filterSeries(); // Filtrar series al agregar una letra
+            });
+            keyboard.appendChild(button);
+        });
+
+        // Agregar barra espaciadora
+        const spaceButton = document.createElement('button');
+        spaceButton.classList.add('special-key');
+        spaceButton.textContent = 'Space';
+        spaceButton.addEventListener('click', () => {
+            searchInput.value += ' ';
+            filterSeries(); // Filtrar series al agregar un espacio
+        });
+        keyboard.appendChild(spaceButton);
+
+        // Agregar tecla de borrar (backspace)
+        const backspaceButton = document.createElement('button');
+        backspaceButton.classList.add('special-key');
+        backspaceButton.textContent = 'Backspace';
+        backspaceButton.addEventListener('click', () => {
+            searchInput.value = searchInput.value.slice(0, -1); // Borrar la última letra
+            filterSeries(); // Filtrar series después de borrar
+        });
+        keyboard.appendChild(backspaceButton);
+
+        // Generar la lista de series (Texto) y las carátulas (Imágenes)
+        const seriesListdiv = document.getElementById('seriesList');
+        const seriesGrid = document.getElementById('seriesGrid');
+
+        function displaySeries(seriesList, target) {
+            if (target === 'text') {
+                // Mostrar lista de texto en .series-list usando solo los títulos
+                let html = '<ul>';
+                seriesList.forEach(serie => {
+                    html += `<li>${serie.title}</li>`;
+                });
+                html += '</ul>';
+                seriesListdiv.innerHTML = html; // Asegurar que se renderice correctamente
+            } else if (target === 'images') {
+                // Mostrar carátulas en .series-grid
+                seriesGrid.innerHTML = ''; // Limpiar el grid
+                seriesList.forEach(serie => {
+                    const seriesCard = document.createElement('div');
+                    seriesCard.classList.add('series-card');
+                    seriesCard.innerHTML = `
+                        <img src="${serie.image}" alt="${serie.title}">
+                        <span>${serie.title}</span>
+                    `;
+                    seriesCard.addEventListener('click', () => showSeriesPopup(serie)); // Abrir pop-up al hacer clic
+                    seriesGrid.appendChild(seriesCard);
+                });
+            }
+        }
+
+        // Filtrar series mientras se escribe (ambas listas)
+        function filterSeries() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const filteredSeries = series.filter(serie =>
+                serie.title.toLowerCase().includes(searchTerm)
+            );
+            displaySeries(filteredSeries, 'text'); // Filtrar lista de texto
+            displaySeries(filteredSeries, 'images'); // Filtrar lista de imágenes
+        }
+
+        // Mostrar pop-up de detalles de la serie
+        const seriesPopup = document.getElementById('seriesPopup');
+        const seriesLogo = document.getElementById('seriesLogo'); // Cambiado de seriesImage a seriesLogo
+        const seriesInfo = document.getElementById('seriesInfo');
+        const seasonsList = document.getElementById('seasonsList');
+        const selectedSeasonElement = document.getElementById('selectedSeason');
+        const episodesGrid = document.getElementById('episodesGrid');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const videoPlayer = document.getElementById('videoPlayer');
+
+        let selectedSeason = null;
+
+        function showSeriesPopup(serie) {
+            seriesLogo.src = serie.logo; // Usar el logo en lugar de la carátula
+            seriesLogo.alt = `${serie.title} Logo`;
+            // Mostrar información: Año y cantidad de temporadas
+            seriesInfo.innerHTML = `
+                Año: ${serie.year}<br>
+                ${serie.seasons.length} Temporadas
+            `;
+
+            // Mostrar todas las temporadas en la izquierda
+            let seasonsHtml = '<ul>';
+            serie.seasons.forEach((season, index) => {
+                const episodeCount = season.episodes.length;
+                seasonsHtml += `<li data-season="${index}">${season.season} - ${episodeCount} episodios</li>`;
+            });
+            seasonsHtml += '</ul>';
+            seasonsList.innerHTML = seasonsHtml;
+
+            // Mostrar la primera temporada seleccionada por defecto
+            selectedSeason = 0;
+            updateSeasonAndEpisodes(serie, selectedSeason);
+
+            // Agregar evento de clic a las temporadas
+            const seasonItems = seasonsList.querySelectorAll('li');
+            seasonItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    selectedSeason = parseInt(item.getAttribute('data-season'));
+                    seasonItems.forEach(li => li.classList.remove('active'));
+                    item.classList.add('active');
+                    updateSeasonAndEpisodes(serie, selectedSeason);
+                });
+            });
+
+            seriesPopup.style.display = 'flex';
+        }
+
+        // Actualizar temporada seleccionada y capítulos
+        function updateSeasonAndEpisodes(serie, seasonIndex) {
+            const season = serie.seasons[seasonIndex];
+            selectedSeasonElement.textContent = `${season.season}`;
+            episodesGrid.innerHTML = '';
+            season.episodes.forEach(episode => {
+                const episodeCard = document.createElement('div');
+                episodeCard.classList.add('episode-card');
+                episodeCard.textContent = episode.title;
+                episodeCard.addEventListener('click', () => showVideoPlayer(episode));
+                episodesGrid.appendChild(episodeCard);
+            });
+        }
+
+        // Cerrar pop-up al hacer clic fuera del contenido
+        seriesPopup.addEventListener('click', (e) => {
+            if (e.target === seriesPopup) {
+                seriesPopup.style.display = 'none';
+                seasonsList.innerHTML = '';
+                episodesGrid.innerHTML = '';
+                selectedSeason = null;
+            }
+        });
+
+        // Mostrar reproductor en pantalla completa (usando Plyr)
+        const plyrElement = document.getElementById('plyrElement');
+        const closeVideoBtn = document.getElementById('closeVideoBtn');
+
+        function showVideoPlayer(episode) {
+            const url = episode.url; // URL del iframe o src
+            const type = episode.type; // "iframe" o "src"
+
+            // Mostrar spinner de carga
+            loadingSpinner.style.display = 'block';
+            videoPlayer.style.display = 'none'; // Ocultar reproductor mientras carga
+
+            // Limpiar el contenido previo
+            plyrElement.innerHTML = '';
+
+            // Configurar el reproductor según el tipo
+            if (type === 'iframe') {
+                // Usar iframe para contenido externo (Vimeo, Dailymotion, etc.)
+                plyrElement.innerHTML = `<iframe src="${url}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen="" width="100%" height="100%"></iframe>`;
+            } else if (type === 'src') {
+                // Usar video HTML5 para contenido local (MP4, etc.)
+                plyrElement.innerHTML = `<video controls><source src="${url}" type="video/mp4"></video>`;
+            }
+
+            // Inicializar Plyr después de un breve retraso para asegurarse de que el DOM esté listo
+            setTimeout(() => {
+                // Ocultar spinner y mostrar reproductor
+                loadingSpinner.style.display = 'none';
+                videoPlayer.style.display = 'flex';
+
+                // Inicializar o reinicializar Plyr si ya existe
+                if (window.plyrInstance) {
+                    window.plyrInstance.destroy();
+                }
+
+                window.plyrInstance = new Plyr(plyrElement, {
+                    controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'],
+                    autoplay: true // Intentar reproducir automáticamente
+                });
+
+                // Asegurar que el reproductor ocupe todo el espacio desde el inicio
+                plyrElement.style.width = '100%';
+                plyrElement.style.height = '100%';
+
+                // Forzar pantalla completa automáticamente
+                const player = window.plyrInstance;
+                requestAnimationFrame(() => {
+                    if (player.fullscreen.active) {
+                        player.fullscreen.exit();
+                    }
+                    player.fullscreen.enter();
+                });
+            }, 500); // Retraso de 500ms para que el spinner sea visible
+        }
+
+        // Cerrar reproductor
+        closeVideoBtn.addEventListener('click', () => {
+            videoPlayer.style.display = 'none';
+            if (window.plyrInstance) {
+                window.plyrInstance.destroy();
+                plyrElement.innerHTML = ''; // Limpiar el contenido del reproductor
+            }
+            loadingSpinner.style.display = 'none'; // Ocultar spinner si está visible
+        });
+
+        // Mostrar todas las series al cargar (ambas listas)
+        document.addEventListener('DOMContentLoaded', () => {
+            displaySeries(series, 'text');
+            displaySeries(series, 'images');
+        });
+
+        // Evento para filtrar al escribir directamente en el input
+        searchInput.addEventListener('input', filterSeries);
+    </script>
+</body>
+
+</html>

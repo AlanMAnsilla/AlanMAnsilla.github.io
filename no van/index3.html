@@ -1,0 +1,134 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Netflix Clone</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        .hover-card:hover .hover-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .hover-card .hover-content {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+    </style>
+</head>
+
+<body class="bg-black text-white">
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="w-16 bg-black h-screen flex flex-col items-center justify-center py-4 space-y-6">
+
+            <div class="flex flex-col space-y-6">
+                <i class="fas fa-home text-gray-400"></i>
+                <i class="fas fa-search text-gray-400"></i>
+                <i class="fas fa-bell text-gray-400"></i>
+                <i class="fas fa-download text-gray-400"></i>
+                <i class="fas fa-film text-gray-400"></i>
+                <i class="fas fa-cog text-gray-400"></i>
+            </div>
+        </div>
+        <!-- Main Content -->
+        <div class="flex-1">
+            <div class="relative">
+                <img id="main-image" alt="Background image of 13 Reasons Why" class="w-full h-96 object-cover" height="450" src="https://storage.googleapis.com/a1aa/image/W9FTpnVAvkkMFf80z34m1R_EvbcD6PdsSVxzJNYQ1u0.jpg" width="800" />
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center px-8">
+                    <div class="text-sm text-green-400" id="match-percentage">97% Match</div>
+                    <div class="text-4xl font-bold" id="title">13 REASONS WHY</div>
+                    <div class="flex items-center space-x-2 text-sm mt-2" id="details">
+                        <span class="bg-gray-700 px-2 py-1 rounded">2018</span>
+                        <span class="bg-gray-700 px-2 py-1 rounded">TV-MA</span>
+                        <span class="bg-gray-700 px-2 py-1 rounded">2 Seasons</span>
+                        <span class="bg-gray-700 px-2 py-1 rounded">HD</span>
+                        <span class="bg-gray-700 px-2 py-1 rounded">5.1</span>
+                    </div>
+                    <div class="mt-4 text-sm" id="description">
+                        <span class="font-bold">Season 3 Coming Friday</span><br/> Months after the Spring Fling, Liberty High is hit with a new shock when Bryce Walker is murdered the night of homecoming ... and everyone is a suspect.
+                    </div>
+                </div>
+            </div>
+            <div class="px-8 mt-4">
+                <div class="text-xl font-bold">Coming This Week</div>
+                <div class="flex space-x-4 mt-4">
+                    <!-- Item 1 -->
+                    <div class="w-48 cursor-pointer hover-card relative" onmouseover="updateContent('13 REASONS WHY', '97% Match', '2018', 'TV-MA', '2 Seasons', 'HD', '5.1', 'Season 3 Coming Friday', 'Months after the Spring Fling, Liberty High is hit with a new shock when Bryce Walker is murdered the night of homecoming ... and everyone is a suspect.', 'https://storage.googleapis.com/a1aa/image/W9FTpnVAvkkMFf80z34m1R_EvbcD6PdsSVxzJNYQ1u0.jpg')">
+                        <img alt="13 Reasons Why thumbnail" class="w-full h-28 object-cover" height="108" src="https://storage.googleapis.com/a1aa/image/sLM2lxfoq6Eqle_ZKPEMbi-QA1C1PRaIcH08cyRbCF4.jpg" width="192" />
+                        <div class="bg-gray-800 p-2 text-center">13 REASONS WHY</div>
+                        <div class="bg-white text-black text-center py-1">Remind me</div>
+                        <div class="hover-content absolute inset-0 flex items-center justify-center bg-black bg-opacity-75">
+                            <button class="bg-red-600 text-white px-4 py-2 rounded">Ver Ahora</button>
+                        </div>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="w-48 cursor-pointer hover-card relative" onmouseover="updateContent('Hyperdrive', '85% Match', '2019', 'TV-PG', '1 Season', 'HD', '5.1', 'New Episodes Weekly', 'Elite street racers from around the world test their limits in custom cars on the biggest, baddest automotive obstacle course ever built.', 'https://storage.googleapis.com/a1aa/image/XCCU207HMy9oCXtKwDiqOKQA3pyUYpA8G6-cd80DZUw.jpg')">
+                        <img alt="Hyperdrive thumbnail" class="w-full h-28 object-cover" height="108" src="https://storage.googleapis.com/a1aa/image/XCCU207HMy9oCXtKwDiqOKQA3pyUYpA8G6-cd80DZUw.jpg" width="192" />
+                        <div class="bg-gray-800 p-2 text-center">Hyperdrive</div>
+                        <div class="bg-gray-800 text-center py-1">✔ Reminder set</div>
+                        <div class="hover-content absolute inset-0 flex items-center justify-center bg-black bg-opacity-75">
+                            <button class="bg-red-600 text-white px-4 py-2 rounded">Ver Ahora</button>
+                        </div>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="w-48 cursor-pointer hover-card relative" onmouseover="updateContent('Rust Valley Restorers', '90% Match', '2018', 'TV-14', '3 Seasons', 'HD', '5.1', 'New Season Coming Soon', 'A crew of car lovers at a garage in the Rocky Mountains transforms abandoned heaps of rust into collectible classics.', 'https://storage.googleapis.com/a1aa/image/5lHEvZ8IsJCFXEEHF2as4c8v7sILVTYvG3iwkHFQUqM.jpg')">
+                        <img alt="Rust Valley Restorers thumbnail" class="w-full h-28 object-cover" height="108" src="https://storage.googleapis.com/a1aa/image/5lHEvZ8IsJCFXEEHF2as4c8v7sILVTYvG3iwkHFQUqM.jpg" width="192" />
+                        <div class="bg-gray-800 p-2 text-center">Rust Valley Restorers</div>
+                        <div class="bg-gray-800 text-center py-1">✔ Reminder set</div>
+                        <div class="hover-content absolute inset-0 flex items-center justify-center bg-black bg-opacity-75">
+                            <button class="bg-red-600 text-white px-4 py-2 rounded">Ver Ahora</button>
+                        </div>
+                    </div>
+                    <!-- Item 4 -->
+                    <div class="w-48 cursor-pointer hover-card relative" onmouseover="updateContent('American Factory', '95% Match', '2019', 'TV-14', '1 Season', 'HD', '5.1', 'New Episodes Weekly', 'In post-industrial Ohio, a Chinese billionaire opens a new factory in the husk of an abandoned General Motors plant, hiring two thousand blue-collar Americans.', 'https://storage.googleapis.com/a1aa/image/k9H2tBuCZ1-Oiq0WXFGY5DpAYM2hMQ9_BrnQgKupNCo.jpg')">
+                        <img alt="American Factory thumbnail" class="w-full h-28 object-cover" height="108" src="https://storage.googleapis.com/a1aa/image/k9H2tBuCZ1-Oiq0WXFGY5DpAYM2hMQ9_BrnQgKupNCo.jpg" width="192" />
+                        <div class="bg-gray-800 p-2 text-center">American Factory</div>
+                        <div class="bg-gray-800 text-center py-1">✔ Reminder set</div>
+                        <div class="hover-content absolute inset-0 flex items-center justify-center bg-black bg-opacity-75">
+                            <button class="bg-red-600 text-white px-4 py-2 rounded">Ver Ahora</button>
+                        </div>
+                    </div>
+                    <!-- Item 5 -->
+                    <div class="w-48 cursor-pointer hover-card relative" onmouseover="updateContent('Hero Mask', '80% Match', '2018', 'TV-MA', '2 Seasons', 'HD', '5.1', 'New Episodes Weekly', 'After a rash of mysterious deaths, Crown prosecutor Sarah Sinclair and SSC agent James Blood discover a conspiracy surrounding uncanny new bio-masks.', 'https://storage.googleapis.com/a1aa/image/xMc_ELGOMf6gro6OB347YsbTu0F94_nUdipSC66l3xc.jpg')">
+                        <img alt="Hero Mask thumbnail" class="w-full h-28 object-cover" height="108" src="https://storage.googleapis.com/a1aa/image/xMc_ELGOMf6gro6OB347YsbTu0F94_nUdipSC66l3xc.jpg" width="192" />
+                        <div class="bg-gray-800 p-2 text-center">Hero Mask</div>
+                        <div class="bg-gray-800 text-center py-1">✔ Reminder set</div>
+                        <div class="hover-content absolute inset-0 flex items-center justify-center bg-black bg-opacity-75">
+                            <button class="bg-red-600 text-white px-4 py-2 rounded">Ver Ahora</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateContent(title, match, year, rating, seasons, quality, audio, headline, description, imageUrl) {
+            document.getElementById('title').innerText = title;
+            document.getElementById('match-percentage').innerText = match;
+            document.getElementById('details').innerHTML = `
+                <span class="bg-gray-700 px-2 py-1 rounded">${year}</span>
+                <span class="bg-gray-700 px-2 py-1 rounded">${rating}</span>
+                <span class="bg-gray-700 px-2 py-1 rounded">${seasons}</span>
+                <span class="bg-gray-700 px-2 py-1 rounded">${quality}</span>
+                <span class="bg-gray-700 px-2 py-1 rounded">${audio}</span>
+            `;
+            document.getElementById('description').innerHTML = `
+                <span class="font-bold">${headline}</span><br/>
+                ${description}
+            `;
+            document.getElementById('main-image').src = imageUrl;
+        }
+    </script>
+</body>
+
+</html>

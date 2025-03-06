@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Películas</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #181818;
+            color: white;
+        }
+        
+        .container {
+            display: flex;
+            width: 100%;
+        }
+        
+        .sidebar {
+            width: 15%;
+            background-color: #222;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .nav-icons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .icon {
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        
+        .movie-info,
+        .movie-carousel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .carousel {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .movie-item {
+            width: 50px;
+            height: 50px;
+            background-color: #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo">LOGO</div>
+            <nav class="nav-icons">
+                <div class="icon">🏠</div>
+                <div class="icon">🔍</div>
+                <div class="icon">🎬</div>
+                <div class="icon">⭐</div>
+                <div class="icon">📅</div>
+                <div class="icon">⚙️</div>
+            </nav>
+        </aside>
+        <main class="content">
+            <section class="movie-info">
+                <h1 id="movie-title">Título de la Película</h1>
+                <p><span id="movie-duration">120 min</span> | <span id="movie-year">2024</span> | <span id="movie-rating">⭐ 8.5</span> | <span id="movie-genre">Acción</span></p>
+                <p id="movie-description">Esta es una breve descripción de la película seleccionada.</p>
+                <p id="movie-actors">Actores: Actor 1, Actor 2, Actor 3</p>
+            </section>
+            <section class="movie-carousel">
+                <div class="carousel">
+                    <div class="movie-item" onclick="selectMovie('Película 1', '110 min', '2022', '⭐ 7.8', 'Drama', 'Descripción de la película 1', 'Actor A, Actor B')">🎥</div>
+                    <div class="movie-item" onclick="selectMovie('Película 2', '95 min', '2021', '⭐ 8.2', 'Comedia', 'Descripción de la película 2', 'Actor C, Actor D')">🎥</div>
+                    <div class="movie-item" onclick="selectMovie('Película 3', '130 min', '2023', '⭐ 9.1', 'Ciencia Ficción', 'Descripción de la película 3', 'Actor E, Actor F')">🎥</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        function selectMovie(title, duration, year, rating, genre, description, actors) {
+            document.getElementById('movie-title').innerText = title;
+            document.getElementById('movie-duration').innerText = duration;
+            document.getElementById('movie-year').innerText = year;
+            document.getElementById('movie-rating').innerText = rating;
+            document.getElementById('movie-genre').innerText = genre;
+            document.getElementById('movie-description').innerText = description;
+            document.getElementById('movie-actors').innerText = 'Actores: ' + actors;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,341 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: black;
+    color: white;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+
+/*********************************************************************/
+
+.sidebar_container {
+    width: 5%;
+}
+
+.sidebar {
+    width: 100px;
+    background: black;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    height: 100vh;
+    transition: width 0.3s;
+    z-index: 1;
+    text-align: center;
+}
+
+.sidebar a {
+    text-decoration: none;
+}
+
+.sidebar i {
+    width: 30px;
+    color: gray;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.sidebar i:hover {
+    color: red;
+    transition: all 0.8s cubic-bezier(0.15, 0.83, 0.66, 1);
+    cursor: pointer;
+}
+
+
+/**********/
+
+.sidebar:hover {
+    width: 300px;
+    align-items: flex-start;
+    padding-left: 20px;
+    background-color: rgba(0, 0, 0, 0.884);
+    z-index: 1000;
+    position: absolute;
+    padding-left: 30px;
+    transition: 150ms;
+}
+
+.sidebar a:hover {
+    color: red;
+    transition: all 0.8s cubic-bezier(0.15, 0.83, 0.66, 1);
+}
+
+.sidebar a span {
+    display: none;
+    color: white;
+    font-size: 18px;
+}
+
+.sidebar:hover a span {
+    display: inline;
+    color: white;
+    font-size: 25px;
+    margin-left: 25px;
+}
+
+
+/*********************************************************************/
+
+.content {
+    flex: 1*;
+    width: 95%;
+}
+
+.banner {
+    position: relative;
+    width: 100%;
+    height: 68vh;
+    overflow: hidden;
+}
+
+.banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.description-title {
+    padding: 50px;
+}
+
+
+/*********************/
+
+.cssFont_1 {
+    font-family: 'Fjalla One', sans-serif;
+    font-size: 60px;
+    margin-bottom: 15px;
+    letter-spacing: 0px;
+    word-spacing: 0px;
+    color: red;
+    font-weight: bold;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
+    text-shadow: 1px 1px 1px black;
+    text-transform: uppercase;
+}
+
+
+/***********************/
+
+#match-percentage {
+    color: lightgreen;
+    font-size: 14px;
+}
+
+#title {
+    font-size: 100px;
+    font-weight: bold;
+}
+
+#details span {
+    background: gray;
+    padding: 5px;
+    border-radius: 5px;
+    margin-right: 5px;
+    font-size: 18px;
+}
+
+#description {
+    width: 50%;
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.bold {
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.upcoming {
+    padding: 20px;
+    height: 30vh;
+    margin-top: 15px;
+    overflow-y: scroll;
+}
+
+.upcoming h2 {
+    font-size: 24px;
+}
+
+.items {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap
+}
+
+.item {
+    width: 280px;
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+    transition: all 0.8s cubic-bezier(0.15, 0.83, 0.66, 1);
+    cursor: pointer;
+}
+
+.item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.item:hover {
+    transform: scale(1.05);
+}
+
+
+/******************************************/
+
+body {
+    --sb-track-color: #232e33;
+    --sb-thumb-color: #bf0000;
+    --sb-size: 6px;
+}
+
+.upcoming::-webkit-scrollbar {
+    width: var(--sb-size)
+}
+
+.upcoming::-webkit-scrollbar-track {
+    background: var(--sb-track-color);
+    border-radius: 3px;
+}
+
+.upcoming::-webkit-scrollbar-thumb {
+    background: var(--sb-thumb-color);
+    border-radius: 3px;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+    .upcoming {
+        scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+    }
+}
+
+
+/*.item-title {
+    background: gray;
+    padding: 5px;
+    margin-top: 5px;
+}*/
+
+
+/*********************
+.watch-btn {
+    background: red;
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.watch-btn:hover {
+    background: darkred;
+}
+    ******/
+
+
+/********buton**********/
+
+.icon-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+    border: none;
+}
+
+.icon {
+    width: 50px;
+    height: 50px;
+}
+
+.icon i {
+    width: 50px;
+    height: 50px;
+    color: white;
+    font-size: 50px;
+}
+
+.icon-overlay:hover {
+    border: none;
+    display: flex;
+    opacity: 1;
+}
+
+#main-image {
+    width: 100%;
+    height: 800px;
+    object-fit: fill;
+}
+
+.logo_astro {
+    margin-left: 60px;
+    width: 300px;
+    height: 100px;
+    position: absolute;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.logo_astro img {
+    margin: auto;
+    width: 50%;
+    height: 100px;
+}
+
+.logo_astro p {
+    margin: auto;
+    text-align: center;
+    font-size: 25px;
+    margin-left: 1px;
+    font-weight: bold;
+    color: #bf0000;
+}
+
+.logo_astro span {
+    margin: auto;
+    text-align: center;
+    font-size: 25px;
+    margin-left: 1px;
+    font-weight: bold;
+}

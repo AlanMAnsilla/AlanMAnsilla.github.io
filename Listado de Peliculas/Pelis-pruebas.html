@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astro Tv-Peliculas</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        body {
+            background-color: black;
+            color: white;
+            display: flex;
+            margin: 0;
+            overflow-x: hidden;
+        }
+        /* Navbar a la izquierda (Sidebar) */
+        
+        .sidebar_container {
+            width: 5%;
+        }
+        
+        .sidebar {
+            width: 100px;
+            background: black;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            height: 100vh;
+            transition: width 0.3s;
+            z-index: 1;
+            text-align: center;
+        }
+        
+        .sidebar a {
+            text-decoration: none;
+        }
+        
+        .sidebar i {
+            width: 30px;
+            color: gray;
+            font-size: 22px;
+            cursor: pointer;
+        }
+        
+        .sidebar i:hover {
+            color: red;
+            transition: all 0.8s cubic-bezier(0.15, 0.83, 0.66, 1);
+            cursor: pointer;
+        }
+        /**********/
+        
+        .sidebar:hover {
+            width: 300px;
+            align-items: flex-start;
+            padding-left: 20px;
+            background-color: rgba(0, 0, 0, 0.884);
+            z-index: 1000;
+            position: absolute;
+            padding-left: 30px;
+            transition: 150ms;
+        }
+        
+        .sidebar a:hover {
+            color: red;
+            transition: all 0.8s cubic-bezier(0.15, 0.83, 0.66, 1);
+        }
+        
+        .sidebar a span {
+            display: none;
+            color: white;
+            font-size: 18px;
+        }
+        
+        .sidebar:hover a span {
+            display: inline;
+            color: white;
+            font-size: 25px;
+            margin-left: 25px;
+        }
+        /* Contenedor principal */
+        
+        .main-content {
+            margin-left: 70px;
+            padding: 20px;
+            width: calc(100% - 70px);
+            display: flex;
+            gap: 20px;
+        }
+        /* Columna izquierda: Teclado y Lista de Películas */
+        
+        .left-column {
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            height: 95vh;
+        }
+        /* Teclado en pantalla */
+        
+        .keyboard {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 5px;
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 20px;
+            height: 300px;
+            margin-top: 60px;
+        }
+        
+        .key {
+            background-color: #444;
+            border: none;
+            padding: 10px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .key:hover {
+            background-color: #555;
+            background-color: #bf0000;
+        }
+        /* Estilo especial para barra espaciadora y backspace */
+        
+        .special-key {
+            grid-column: span 2;
+            /* Ocupa 2 columnas para que sea más ancho */
+            background-color: #444;
+            padding: 10px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .special-key:hover {
+            background-color: #555;
+            background-color: #bf0000;
+        }
+        /* Sección de lista de películas */
+        
+        .movie-list {
+            width: 100%;
+            height: 500px;
+            background-color: #222;
+            padding: 20px;
+            overflow-y: auto;
+            /* Para scroll si hay muchas películas */
+        }
+        
+        .movie-list ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .movie-list li {
+            margin: 10px 0;
+            color: #fff;
+            cursor: default;
+            font-size: 20px;
+            font-weight: bold;
+            /* No interactúa con clics */
+        }
+        /* Columna derecha: Buscador y Lista de Películas (Imágenes) */
+        
+        .right-column {
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            height: 95vh;
+        }
+        /* Barra de búsqueda */
+        
+        .barra_busqueda {
+            display: flex;
+        }
+        
+        .icono_busqueda {
+            width: 4%;
+            margin-right: 1%;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .barra_busqueda i {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            margin: auto;
+            color: #bf0000;
+            font-size: 30px;
+        }
+        
+        .search-bar {
+            width: 95%;
+            padding: 10px;
+            background-color: #333;
+            border: none;
+            color: white;
+            font-size: 18px;
+            outline: none;
+            margin-bottom: 20px;
+        }
+        /* Carátulas de películas */
+        
+        .movies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 5px;
+            overflow: auto;
+        }
+        
+        .movie-card {
+            width: 100%;
+            height: 300px;
+            background-color: #333;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .movie-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .movie-card span {
+            position: absolute;
+            bottom: 5px;
+            left: 5px;
+            font-size: 14px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 2px 5px;
+        }
+        /* Reproductor en pantalla completa */
+        
+        .video-player {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .video-player video {
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
+        }
+        
+        .video-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+        
+        .video-controls button {
+            background-color: #444;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        .video-controls button:hover {
+            background-color: #555;
+        }
+        /*****/
+        
+        body {
+            --sb-track-color: #232e33;
+            --sb-thumb-color: #bf0000;
+            --sb-size: 6px;
+        }
+        
+        .movie-list::-webkit-scrollbar {
+            width: var(--sb-size)
+        }
+        
+        .movie-list::-webkit-scrollbar-track {
+            background: var(--sb-track-color);
+            border-radius: 3px;
+        }
+        
+        .movie-list::-webkit-scrollbar-thumb {
+            background: var(--sb-thumb-color);
+            border-radius: 3px;
+        }
+        
+        @supports not selector(::-webkit-scrollbar) {
+            .upcoming {
+                scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+            }
+        }
+        /******************/
+        
+        .movies-grid::-webkit-scrollbar {
+            width: var(--sb-size)
+        }
+        
+        .movies-grid::-webkit-scrollbar-track {
+            background: var(--sb-track-color);
+            border-radius: 3px;
+        }
+        
+        .movies-grid::-webkit-scrollbar-thumb {
+            background: var(--sb-thumb-color);
+            border-radius: 3px;
+        }
+        /*********************************************************/
+        
+        .logo_astro {
+            margin-left: 60px;
+            width: 300px;
+            height: 100px;
+            position: absolute;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .logo_astro img {
+            margin: auto;
+            width: 50%;
+            height: 100px;
+        }
+        
+        .logo_astro p {
+            margin: auto;
+            text-align: center;
+            font-size: 25px;
+            margin-left: 1px;
+            font-weight: bold;
+            color: #bf0000;
+        }
+        
+        .logo_astro span {
+            margin: auto;
+            text-align: center;
+            font-size: 25px;
+            margin-left: 1px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logo_astro"><img src="/Prueba2/Astro Tv.png" alt="">
+        <p>|</p><span>Películas</span></div>
+    <!-- Sidebar -->
+    <div class="sidebar_container">
+        <div class="sidebar">
+
+            <a href="/Prueba2/indexNetflix.html"><i class="fas fa-home"></i><span>Inicio</span></a>
+            <a href=""><i class="fas fa-search"></i><span>Buscar</span></a>
+            <a href=""><i class="fas fa-bell"></i><span>Notificaciones</span></a>
+            <a href="#"><i class="fas fa-film"></i><span>Peliculas</span></a>
+            <a href="/Listado de Series/series-prueba.html"><i class="fa-solid fa-video"></i><span>Series</span></a>
+            <a href=""><i class="fa-solid fa-tv"></i><span>Tv en vivo</span></a>
+        </div>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="main-content">
+        <!-- Columna izquierda: Teclado y Lista de Películas -->
+        <div class="left-column">
+            <!-- Teclado en pantalla -->
+            <div class="keyboard" id="keyboard">
+                <!-- Las teclas se generarán con JavaScript -->
+            </div>
+
+            <!-- Lista de películas (Texto) -->
+            <div class="movie-list" id="movieList">
+                <!-- La lista se generará con JavaScript -->
+            </div>
+        </div>
+
+        <!-- Columna derecha: Buscador y Lista de Películas (Imágenes) -->
+        <div class="right-column">
+            <!-- Barra de búsqueda -->
+            <div class="barra_busqueda">
+                <div class="icono_busqueda"><i class="fa-solid fa-magnifying-glass fa-beat-fade"></i></div><input type="text" class="search-bar" id="searchInput" placeholder="Buscar películas..."></div>
+            <!--<input type="text" class="search-bar" id="searchInput" placeholder="Buscar películas...">-->
+
+            <!-- Grid de películas (Imágenes) -->
+            <div class="movies-grid" id="moviesGrid">
+                <!-- Las carátulas se generarán con JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Reproductor en pantalla completa -->
+    <div class="video-player" id="videoPlayer">
+        <video id="videoElement" controls>
+            <source src="" type="video/mp4">
+            Tu navegador no soporta video HTML5.
+        </video>
+        <div class="video-controls">
+            <button id="playPauseBtn">Play/Pause</button>
+            <button id="closeBtn">Cerrar</button>
+        </div>
+    </div>
+
+    <script>
+        // Lista de películas (simulada) con campo de video
+        const movies = [{
+            title: "Ozzy",
+            image: "https://www.cuevana.is/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Foriginal%2F74GSfa2Bj3pCxRCtWpe1xYJ9vXh.jpg&w=256&q=75",
+            video: "https://www.youtube.com/watch?v=wgQRvCQD5CI"
+        }, {
+            title: "Rápidos y furiosos X",
+            image: "https://www.cuevana.is/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Foriginal%2FlZRRxutZIXQSAq0mXNHdM7kPfBP.jpg&w=256&q=75",
+            video: "https://www.w3schools.com/html/mov_bbb.mp4"
+        }, {
+            title: "El señor de los anillos: La comunidad del anillo",
+            image: "https://www.cuevana.is/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Foriginal%2F9xtH1RmAzQ0rrMBNUMXstb2s3er.jpg&w=256&q=75",
+            video: "https://www.w3schools.com/html/mov_bbb.mp4"
+        }, {
+            title: "Flow",
+            image: "https://www.cuevana.is/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Foriginal%2F337MqZW7xii2evUDVeaWXAtopff.jpg&w=256&q=75",
+            video: "https://www.w3schools.com/html/mov_bbb.mp4"
+        }, {
+            title: "Chica conoce a chico",
+            image: "https://www.cuevana.is/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Foriginal%2FkxRjfgZHj7nsa7aBqm6qato2b70.jpg&w=256&q=75",
+            video: "https://www.w3schools.com/html/mov_bbb.mp4"
+        }, {
+            title: "El abismo secreto",
+            image: "https://www.cuevana.is/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Foriginal%2F3s0jkMh0YUhIeIeioH3kt2X4st4.jpg&w=256&q=75",
+            video: "https://www.w3schools.com/html/mov_bbb.mp4"
+        }, {
+            title: "Ant-Man 2: La Avispa",
+            image: "https://www.cuevana.is/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Foriginal%2FlwmCdtTvjnJZK79JKYkzkb0MFOP.jpg&w=256&q=75",
+            video: "https://www.w3schools.com/html/mov_bbb.mp4"
+        }, {
+            title: "Click",
+            image: "https://www.cuevana.is/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Foriginal%2Fl06jMu0V4cp1DuQdI9ptSJjV01q.jpg&w=256&q=75",
+            video: "https://www.w3schools.com/html/mov_bbb.mp4"
+        }, {
+            title: "Terminator: Destino Oculto",
+            image: "https://www.cuevana.is/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Foriginal%2Fk7PuHoj2oE7nEHExwliF2FSXFnr.jpg&w=256&q=75",
+            video: "https://www.w3schools.com/html/mov_bbb.mp4"
+        }, {
+            title: "Hechizados",
+            image: "https://www.cuevana.is/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Foriginal%2Fg4oArI4RmOnSDZzQbdbAm3yLNkC.jpg&w=256&q=75",
+            video: "https://www.w3schools.com/html/mov_bbb.mp4"
+        }, {
+            title: "El mono",
+            image: "https://www.cuevana.is/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Foriginal%2FeEhZyX9s15RRjDZ358GNNQRBMWs.jpg&w=256&q=75",
+            video: "https://www.w3schools.com/html/mov_bbb.mp4"
+        }, {
+            title: "The Moon: Sobreviviente",
+            image: "https://www.cuevana.is/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Foriginal%2F3j0xhQMOkqy56MH1TaWio4Os8Tg.jpg&w=256&q=75",
+            video: "https://www.w3schools.com/html/mov_bbb.mp4"
+        }, {
+            title: "Asesino Solitario",
+            image: "https://via.placeholder.com/150x220.png?text=Asesino+Solitario",
+            video: "https://www.w3schools.com/html/mov_bbb.mp4"
+        }, {
+            title: "La Bestia",
+            image: "https://via.placeholder.com/150x220.png?text=La+Bestia",
+            video: "https://www.w3schools.com/html/mov_bbb.mp4"
+        }];
+
+        // Generar el teclado
+        const keyboard = document.getElementById('keyboard');
+        const searchInput = document.getElementById('searchInput');
+        const keys = 'abcdefghijklmnopqrstuvwxyz0123456789'.split('');
+
+        // Agregar teclas normales
+        keys.forEach(key => {
+            const button = document.createElement('button');
+            button.classList.add('key');
+            button.textContent = key;
+            button.addEventListener('click', () => {
+                searchInput.value += key;
+                filterMovies(); // Filtrar películas al agregar una letra
+            });
+            keyboard.appendChild(button);
+        });
+
+        // Agregar barra espaciadora
+        const spaceButton = document.createElement('button');
+        spaceButton.classList.add('special-key');
+        spaceButton.textContent = 'Space';
+        spaceButton.addEventListener('click', () => {
+            searchInput.value += ' ';
+            filterMovies(); // Filtrar películas al agregar un espacio
+        });
+        keyboard.appendChild(spaceButton);
+
+        // Agregar tecla de borrar (backspace)
+        const backspaceButton = document.createElement('button');
+        backspaceButton.classList.add('special-key');
+        backspaceButton.textContent = 'Backspace';
+        backspaceButton.addEventListener('click', () => {
+            searchInput.value = searchInput.value.slice(0, -1); // Borrar la última letra
+            filterMovies(); // Filtrar películas después de borrar
+        });
+        keyboard.appendChild(backspaceButton);
+
+        // Generar la lista de películas (Texto) y las carátulas (Imágenes)
+        const movieListdiv = document.getElementById('movieList');
+        const moviesGrid = document.getElementById('moviesGrid');
+
+        function displayMovies(movieList, target) {
+            if (target === 'text') {
+                // Mostrar lista de texto en .movie-list usando solo los títulos
+                let html = '<ul>';
+                movieList.forEach(movie => {
+                    html += `<li>${movie.title}</li>`;
+                });
+                html += '</ul>';
+                movieListdiv.innerHTML = html; // Asegurar que se renderice correctamente
+            } else if (target === 'images') {
+                // Mostrar carátulas en .movies-grid
+                moviesGrid.innerHTML = ''; // Limpiar el grid
+                movieList.forEach(movie => {
+                    const movieCard = document.createElement('div');
+                    movieCard.classList.add('movie-card');
+                    movieCard.innerHTML = `
+                        <img src="${movie.image}" alt="${movie.title}">
+                        <span>${movie.title}</span>
+                    `;
+                    movieCard.addEventListener('click', () => showVideoPlayer(movie)); // Abrir reproductor al hacer clic
+                    moviesGrid.appendChild(movieCard);
+                });
+            }
+        }
+
+        // Filtrar películas mientras se escribe (ambas listas)
+        function filterMovies() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const filteredMovies = movies.filter(movie =>
+                movie.title.toLowerCase().includes(searchTerm)
+            );
+            displayMovies(filteredMovies, 'text'); // Filtrar lista de texto
+            displayMovies(filteredMovies, 'images'); // Filtrar lista de imágenes
+        }
+
+        // Mostrar reproductor en pantalla completa
+        const videoPlayer = document.getElementById('videoPlayer');
+        const videoElement = document.getElementById('videoElement');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const closeBtn = document.getElementById('closeBtn');
+
+        function showVideoPlayer(movie) {
+            // Usar el video específico de la película seleccionada
+            videoElement.src = movie.video; // Usar el campo video de la película
+            videoPlayer.style.display = 'flex';
+            videoElement.play(); // Iniciar reproducción automáticamente
+        }
+
+        // Controles del reproductor
+        playPauseBtn.addEventListener('click', () => {
+            if (videoElement.paused) {
+                videoElement.play();
+                playPauseBtn.textContent = 'Pause';
+            } else {
+                videoElement.pause();
+                playPauseBtn.textContent = 'Play';
+            }
+        });
+
+        closeBtn.addEventListener('click', () => {
+            videoPlayer.style.display = 'none';
+            videoElement.pause();
+            videoElement.currentTime = 0; // Reiniciar el video
+        });
+
+        // Mostrar todas las películas al cargar (ambas listas)
+        document.addEventListener('DOMContentLoaded', () => {
+            displayMovies(movies, 'text');
+            displayMovies(movies, 'images');
+        });
+
+        // Evento para filtrar al escribir directamente en el input
+        searchInput.addEventListener('input', filterMovies);
+    </script>
+</body>
+
+</html>

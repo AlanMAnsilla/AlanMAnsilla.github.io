@@ -1,0 +1,27 @@
+body {
+    background-image: url(Captura.JPG);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+}
+
+.navegacion-principal {
+    width: 100%;
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0.76);
+    color: aliceblue;
+}
+
+.navegacion-principal ul {
+    background-color: aqua;
+    display: flex;
+    text-align: center;
+    margin: auto;
+    width: 500px;
+    height: 80px;
+}
+
+.navegacion-principal ul li {
+    padding: 15px;
+}
