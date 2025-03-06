@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astro Tv</title>
+    <link rel="stylesheet" href="/Prueba2/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="logo_astro"><img src="/Prueba2/Astro Tv.png" alt="">
+        <p>|</p><span>Inicio</span></div>
+    <div class="container">
+
+        <!-- Sidebar -->
+        <div class="sidebar_container">
+            <div class="sidebar">
+
+                <a href="#"><i class="fas fa-home"></i><span>Inicio</span></a>
+                <a href=""><i class="fas fa-search"></i><span>Buscar</span></a>
+                <a href=""><i class="fas fa-bell"></i><span>Notificaciones</span></a>
+                <a href="/Listado de Peliculas/Pelis-pruebas.html"><i class="fas fa-film"></i><span>Peliculas</span></a>
+                <a href="/Listado de Series/series-prueba.html"><i class="fa-solid fa-video"></i><span>Series</span></a>
+                <a href=""><i class="fa-solid fa-tv"></i><span>Tv en vivo</span></a>
+            </div>
+        </div>
+
+
+        <!-- Main Content -->
+        <div class="content">
+            <div class="banner">
+                <img id="main-image" alt="Background image of 13 Reasons Why" src="https://almomento.mx/wp-content/uploads/2020/11/Disney-Plus-catalogo-Mexico-y-Latinoamerica.jpg">
+                <div class="banner-overlay">
+                    <div class="description-title">
+                        <div class="cssFont_1" style="font-family:'Fjalla One', sans-serif"></div>
+                        <div id="match-percentage">100% segura</div>
+                        <div id="title">Bienvenido a Astro Tv</div>
+                        <div id="details">
+                            <span>PELÍCULAS</span>
+                            <span>TV</span>
+                            <span>SERIES</span>
+                            <span>DOCUMENTALES</span>
+                            <span>Y MÁS...</span>
+                        </div>
+                        <div id="description">
+                            <span class="bold">Disfruta de la mejor selección de TV en vivo, películas, documentales y series, todo en un solo lugar y disponible para ti cuando quieras.</span><br>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="upcoming">
+                <h2>Recomended Movies</h2>
+                <div class="items">
+                    <div class="item" onfocus="updateContent()" onmouseover="updateContent('Avengers: Endgame', '97% Match', '2019', '173 min', 'Latino', 'HD 720P', '5.1', 'Season 3 Coming Friday', 'Avengers: Endgame es el épico cierre de la saga del Infinito, donde los Vengadores luchan por revertir el chasquido de Thanos. Con viajes en el tiempo, sacrificios y una batalla final inolvidable, la película ofrece un emocionante adiós a varios héroes icónicos.', 'https://wallpapercave.com/wp/wp12764521.jpg')">
+                        <img src="https://cinergiaonline.com/wp-content/uploads/2019/05/avengers-endgame-01.jpg" alt="13 Reasons Why"></img>
+
+                        <button class="icon-overlay"><a class="icon" href=""><i class="fa-solid fa-play fa-beat-fade"></i></a></button>
+
+                    </div>
+                    <div class="item" onfocus="updateContent()" onmouseover="updateContent('Moana 2', '85% Match', '2019', 'TV-PG', '1 Season', 'HD', '5.1', 'New Episodes Weekly', 'Elite street racers from around the world test their limits...', 'https://musicart.xboxlive.com/7/92fb6d00-0000-0000-0000-000000000002/504/image.jpg')">
+                        <img src="https://www.negociosydestinos.com/wp-content/uploads/2024/12/mo.jpg" alt="Hyperdrive">
+                        <button class="icon-overlay"><a class="icon" href=""><i class="fa-solid fa-play fa-beat-fade"></i></a></button>
+
+
+                    </div>
+                    <div class="item" onmouseover="updateContent('Gladiador 2', '85% Match', '2019', 'TV-PG', '1 Season', 'HD', '5.1', 'New Episodes Weekly', 'Elite street racers from around the world test their limits...', 'https://i0.wp.com/cinemedios.com/wp-content/uploads/2024/07/Gladiador-2-Portada.jpg?fit=1200%2C675&ssl=1')">
+                        <img src="https://www.informador.mx/__export/1720485358773/sites/elinformador/img/2024/07/08/gladiador_version1720485307858.jpg_423682103.jpg" alt="Hyperdrive">
+                        <button class="icon-overlay"><a class="icon" href=""><i class="fa-solid fa-play fa-beat-fade"></i></a></button>
+
+                    </div>
+                    <div class="item" onmouseover="updateContent('Mufasa', '85% Match', '2019', 'TV-PG', '1 Season', 'HD', '5.1', 'New Episodes Weekly', 'Elite street racers from around the world test their limits...', 'https://www.bizcochito.es/Films/Movil/tt13186482.webp')">
+                        <img src="https://spoilerfreereviews.com/wp-content/uploads/2025/01/nHhjqeJcaQKOBCd21c1kV2DK5gm.jpg" alt="Hyperdrive">
+                        <button class="icon-overlay"><a class="icon" href=""><i class="fa-solid fa-play fa-beat-fade"></i></a></button>
+
+                    </div>
+                    <div class="item" onmouseover="updateContent('Sonic 3', '85% Match', '2019', 'TV-PG', '1 Season', 'HD', '5.1', 'New Episodes Weekly', 'Elite street racers from around the world test their limits...', 'https://forbes.pe/_next/image?url=https%3A%2F%2Fcdn.forbes.pe%2F2025%2F01%2FSonic.webp%3Fv%3D1200680&w=3840&q=75')">
+                        <img src="https://nintenduo.com/wp-content/uploads/2024/11/Poster-Sonic-3-Pelicula.webp" alt="Hyperdrive">
+
+                        <button class="icon-overlay"><a class="icon" href=""><i class="fa-solid fa-play fa-beat-fade"></i></a></button>
+                    </div>
+
+                    <div class="item" tabindex="0" onmouseover="updateContent('Capitán América: Brave New World', '85% Match', '2019', 'TV-PG', '1 Season', 'HD', '5.1', 'New Episodes Weekly', 'Elite street racers from around the world test their limits...', 'https://movies.sterkinekor.co.za/CDN/media/entity/get/FilmTitleGraphic/HO00003393?referenceScheme=HeadOffice&allowPlaceHolder=true')">
+                        <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/2e317a1c-f1ce-4a5f-90db-d88cc01db2d0/diqz7q1-f09abcc6-904e-4b39-97b5-9b62514b7751.png/v1/fill/w_1280,h_2066,q_80,strp/captain_america_brave_new_world_poster_2025_by_mrandrew7w7_diqz7q1-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MjA2NiIsInBhdGgiOiJcL2ZcLzJlMzE3YTFjLWYxY2UtNGE1Zi05MGRiLWQ4OGNjMDFkYjJkMFwvZGlxejdxMS1mMDlhYmNjNi05MDRlLTRiMzktOTdiNS05YjYyNTE0Yjc3NTEucG5nIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.twNOZJzs0phift96dP6fsfnTJ_6wM37SSbOFFdT2ilY"
+                            alt="Hyperdrive">
+                        <button class="icon-overlay"><a class="icon" href=""><i class="fa-solid fa-play fa-beat-fade"></i></a></button>
+
+                    </div>
+
+                </div>
+                <!--
+                <div class="upcoming2">
+                    <h2>All The Movies</h2>
+                    <div class="items">
+                        <div class="item" onfocus="updateContent()" onmouseover="updateContent('13 REASONS WHY', '97% Match', '2018', 'TV-MA', '2 Seasons', 'HD', '5.1', 'Season 3 Coming Friday', 'Months after the Spring Fling, Liberty High...', 'https://storage.googleapis.com/a1aa/image/W9FTpnVAvkkMFf80z34m1R_EvbcD6PdsSVxzJNYQ1u0.jpg')">
+                            <img src="https://storage.googleapis.com/a1aa/image/sLM2lxfoq6Eqle_ZKPEMbi-QA1C1PRaIcH08cyRbCF4.jpg" alt="13 Reasons Why">
+
+                            <button class="watch-btn">Ver Ahora</button>
+                        </div>
+                        <div class="item" onfocus="updateContent()" onmouseover="updateContent('Hyperdrive', '85% Match', '2019', 'TV-PG', '1 Season', 'HD', '5.1', 'New Episodes Weekly', 'Elite street racers from around the world test their limits...', 'https://storage.googleapis.com/a1aa/image/XCCU207HMy9oCXtKwDiqOKQA3pyUYpA8G6-cd80DZUw.jpg')">
+                            <img src="https://storage.googleapis.com/a1aa/image/XCCU207HMy9oCXtKwDiqOKQA3pyUYpA8G6-cd80DZUw.jpg" alt="Hyperdrive">
+
+                            <button class="watch-btn" onfocus="updateContent('Hyperdrive', '85% Match', '2019', 'TV-PG', '1 Season', 'HD', '5.1', 'New Episodes Weekly', 'Elite street racers from around the world test their limits...', 'https://storage.googleapis.com/a1aa/image/XCCU207HMy9oCXtKwDiqOKQA3pyUYpA8G6-cd80DZUw.jpg')">Ver Ahora</button>
+                        </div>
+                        <div class="item" onmouseover="updateContent('Hyperdrive', '85% Match', '2019', 'TV-PG', '1 Season', 'HD', '5.1', 'New Episodes Weekly', 'Elite street racers from around the world test their limits...', 'https://storage.googleapis.com/a1aa/image/XCCU207HMy9oCXtKwDiqOKQA3pyUYpA8G6-cd80DZUw.jpg')">
+                            <img src="https://storage.googleapis.com/a1aa/image/XCCU207HMy9oCXtKwDiqOKQA3pyUYpA8G6-cd80DZUw.jpg" alt="Hyperdrive">
+
+                            <button class="watch-btn">Ver Ahora</button>
+                        </div>
+                        <div class="item" onmouseover="updateContent('Hyperdrive', '85% Match', '2019', 'TV-PG', '1 Season', 'HD', '5.1', 'New Episodes Weekly', 'Elite street racers from around the world test their limits...', 'https://storage.googleapis.com/a1aa/image/XCCU207HMy9oCXtKwDiqOKQA3pyUYpA8G6-cd80DZUw.jpg')">
+                            <img src="https://storage.googleapis.com/a1aa/image/XCCU207HMy9oCXtKwDiqOKQA3pyUYpA8G6-cd80DZUw.jpg" alt="Hyperdrive">
+
+                            <button class="watch-btn">Ver Ahora</button>
+                        </div>
+                        <div class="item" onmouseover="updateContent('Hyperdrive', '85% Match', '2019', 'TV-PG', '1 Season', 'HD', '5.1', 'New Episodes Weekly', 'Elite street racers from around the world test their limits...', 'https://storage.googleapis.com/a1aa/image/XCCU207HMy9oCXtKwDiqOKQA3pyUYpA8G6-cd80DZUw.jpg')">
+                            <img src="https://storage.googleapis.com/a1aa/image/XCCU207HMy9oCXtKwDiqOKQA3pyUYpA8G6-cd80DZUw.jpg" alt="Hyperdrive">
+
+                            <button class="watch-btn">Ver Ahora</button>
+                        </div>
+
+                        <div class="item" tabindex="0" onmouseover="updateContent('Capitán América: Brave New World', '85% Match', '2019', 'TV-PG', '1 Season', 'HD', '5.1', 'New Episodes Weekly', 'Elite street racers from around the world test their limits...', 'https://www.el1digital.com.ar/wp-content/uploads/2025/02/capitan-america.png')">
+                            <img src="https://lumiere-a.akamaihd.net/v1/images/image_81e2d881.jpeg?region=0,0,540,810" alt="Hyperdrive">
+
+                            <button class="watch-btn">Ver Ahora</button>
+                        </div>
+
+                    </div>
+                </div>-->
+                <div class="upcoming2">
+                    <h2>Marvel</h2>
+                    <div class="items">
+                        <div class="item" onfocus="updateContent()" onmouseover="updateContent('Avengers: Endgame', '97% Match', '2019', '173 min', 'Latino', 'HD 720P', '5.1', 'Season 3 Coming Friday', 'Avengers: Endgame es el épico cierre de la saga del Infinito, donde los Vengadores luchan por revertir el chasquido de Thanos. Con viajes en el tiempo, sacrificios y una batalla final inolvidable, la película ofrece un emocionante adiós a varios héroes icónicos.', 'https://wallpapercave.com/wp/wp12764521.jpg')">
+                            <img src="https://cinergiaonline.com/wp-content/uploads/2019/05/avengers-endgame-01.jpg" alt="13 Reasons Why"></img>
+
+                            <button class="icon-overlay"><a class="icon" href=""><i class="fa-solid fa-play fa-beat-fade"></i></a></button>
+
+                        </div>
+                        <div class="item" onfocus="updateContent()" onmouseover="updateContent('Iron Man 3', '85% Match', '2019', 'TV-PG', '1 Season', 'HD', '5.1', 'New Episodes Weekly', 'Elite street racers from around the world test their limits...', 'https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/0BD9501BEACE8B4B1901DA0A7FAE3925AD8B8BF6EE7C5E2EF7D3C5181EF421CF/scale?width=1200&aspectRatio=1.78&format=webp')">
+                            <img src="https://es.web.img3.acsta.net/medias/nmedia/18/77/86/82/20486826.jpg" alt="Hyperdrive">
+                            <button class="icon-overlay"><a class="icon" href=""><i class="fa-solid fa-play fa-beat-fade"></i></a></button>
+
+
+                        </div>
+                        <div class="item" onmouseover="updateContent('Gladiador 2', '85% Match', '2019', 'TV-PG', '1 Season', 'HD', '5.1', 'New Episodes Weekly', 'Elite street racers from around the world test their limits...', 'https://i0.wp.com/cinemedios.com/wp-content/uploads/2024/07/Gladiador-2-Portada.jpg?fit=1200%2C675&ssl=1')">
+                            <img src="https://www.informador.mx/__export/1720485358773/sites/elinformador/img/2024/07/08/gladiador_version1720485307858.jpg_423682103.jpg" alt="Hyperdrive">
+                            <button class="icon-overlay"><a class="icon" href=""><i class="fa-solid fa-play fa-beat-fade"></i></a></button>
+
+                        </div>
+                        <div class="item" onmouseover="updateContent('Mufasa', '85% Match', '2019', 'TV-PG', '1 Season', 'HD', '5.1', 'New Episodes Weekly', 'Elite street racers from around the world test their limits...', 'https://www.bizcochito.es/Films/Movil/tt13186482.webp')">
+                            <img src="https://spoilerfreereviews.com/wp-content/uploads/2025/01/nHhjqeJcaQKOBCd21c1kV2DK5gm.jpg" alt="Hyperdrive">
+                            <button class="icon-overlay"><a class="icon" href=""><i class="fa-solid fa-play fa-beat-fade"></i></a></button>
+
+                        </div>
+                        <div class="item" onmouseover="updateContent('Sonic 3', '85% Match', '2019', 'TV-PG', '1 Season', 'HD', '5.1', 'New Episodes Weekly', 'Elite street racers from around the world test their limits...', 'https://forbes.pe/_next/image?url=https%3A%2F%2Fcdn.forbes.pe%2F2025%2F01%2FSonic.webp%3Fv%3D1200680&w=3840&q=75')">
+                            <img src="https://nintenduo.com/wp-content/uploads/2024/11/Poster-Sonic-3-Pelicula.webp" alt="Hyperdrive">
+
+                            <button class="icon-overlay"><a class="icon" href=""><i class="fa-solid fa-play fa-beat-fade"></i></a></button>
+                        </div>
+
+                        <div class="item" tabindex="0" onmouseover="updateContent('Capitán América: Brave New World', '85% Match', '2019', 'TV-PG', '1 Season', 'HD', '5.1', 'New Episodes Weekly', 'Elite street racers from around the world test their limits...', 'https://movies.sterkinekor.co.za/CDN/media/entity/get/FilmTitleGraphic/HO00003393?referenceScheme=HeadOffice&allowPlaceHolder=true')">
+                            <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/2e317a1c-f1ce-4a5f-90db-d88cc01db2d0/diqz7q1-f09abcc6-904e-4b39-97b5-9b62514b7751.png/v1/fill/w_1280,h_2066,q_80,strp/captain_america_brave_new_world_poster_2025_by_mrandrew7w7_diqz7q1-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MjA2NiIsInBhdGgiOiJcL2ZcLzJlMzE3YTFjLWYxY2UtNGE1Zi05MGRiLWQ4OGNjMDFkYjJkMFwvZGlxejdxMS1mMDlhYmNjNi05MDRlLTRiMzktOTdiNS05YjYyNTE0Yjc3NTEucG5nIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.twNOZJzs0phift96dP6fsfnTJ_6wM37SSbOFFdT2ilY"
+                                alt="Hyperdrive">
+                            <button class="icon-overlay"><a class="icon" href=""><i class="fa-solid fa-play fa-beat-fade"></i></a></button>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="upcoming3">
+                    <h2>Disney</h2>
+                    <div class="items">
+                        <div class="item" onfocus="updateContent()" onmouseover="updateContent('Avengers: Endgame', '97% Match', '2019', '173 min', 'Latino', 'HD 720P', '5.1', 'Season 3 Coming Friday', 'Avengers: Endgame es el épico cierre de la saga del Infinito, donde los Vengadores luchan por revertir el chasquido de Thanos. Con viajes en el tiempo, sacrificios y una batalla final inolvidable, la película ofrece un emocionante adiós a varios héroes icónicos.', 'https://wallpapercave.com/wp/wp12764521.jpg')">
+                            <img src="https://cinergiaonline.com/wp-content/uploads/2019/05/avengers-endgame-01.jpg" alt="13 Reasons Why"></img>
+
+                            <button class="icon-overlay"><a class="icon" href=""><i class="fa-solid fa-play fa-beat-fade"></i></a></button>
+
+                        </div>
+                        <div class="item" onfocus="updateContent()" onmouseover="updateContent('Moana 2', '85% Match', '2019', 'TV-PG', '1 Season', 'HD', '5.1', 'New Episodes Weekly', 'Elite street racers from around the world test their limits...', 'https://musicart.xboxlive.com/7/92fb6d00-0000-0000-0000-000000000002/504/image.jpg')">
+                            <img src="https://www.negociosydestinos.com/wp-content/uploads/2024/12/mo.jpg" alt="Hyperdrive">
+                            <button class="icon-overlay"><a class="icon" href=""><i class="fa-solid fa-play fa-beat-fade"></i></a></button>
+
+
+                        </div>
+                        <div class="item" onmouseover="updateContent('Gladiador 2', '85% Match', '2019', 'TV-PG', '1 Season', 'HD', '5.1', 'New Episodes Weekly', 'Elite street racers from around the world test their limits...', 'https://i0.wp.com/cinemedios.com/wp-content/uploads/2024/07/Gladiador-2-Portada.jpg?fit=1200%2C675&ssl=1')">
+                            <img src="https://www.informador.mx/__export/1720485358773/sites/elinformador/img/2024/07/08/gladiador_version1720485307858.jpg_423682103.jpg" alt="Hyperdrive">
+                            <button class="icon-overlay"><a class="icon" href=""><i class="fa-solid fa-play fa-beat-fade"></i></a></button>
+
+                        </div>
+                        <div class="item" onmouseover="updateContent('Mufasa', '85% Match', '2019', 'TV-PG', '1 Season', 'HD', '5.1', 'New Episodes Weekly', 'Elite street racers from around the world test their limits...', 'https://www.bizcochito.es/Films/Movil/tt13186482.webp')">
+                            <img src="https://spoilerfreereviews.com/wp-content/uploads/2025/01/nHhjqeJcaQKOBCd21c1kV2DK5gm.jpg" alt="Hyperdrive">
+                            <button class="icon-overlay"><a class="icon" href=""><i class="fa-solid fa-play fa-beat-fade"></i></a></button>
+
+                        </div>
+                        <div class="item" onmouseover="updateContent('Sonic 3', '85% Match', '2019', 'TV-PG', '1 Season', 'HD', '5.1', 'New Episodes Weekly', 'Elite street racers from around the world test their limits...', 'https://forbes.pe/_next/image?url=https%3A%2F%2Fcdn.forbes.pe%2F2025%2F01%2FSonic.webp%3Fv%3D1200680&w=3840&q=75')">
+                            <img src="https://nintenduo.com/wp-content/uploads/2024/11/Poster-Sonic-3-Pelicula.webp" alt="Hyperdrive">
+
+                            <button class="icon-overlay"><a class="icon" href=""><i class="fa-solid fa-play fa-beat-fade"></i></a></button>
+                        </div>
+
+                        <div class="item" tabindex="0" onmouseover="updateContent('Capitán América: Brave New World', '85% Match', '2019', 'TV-PG', '1 Season', 'HD', '5.1', 'New Episodes Weekly', 'Elite street racers from around the world test their limits...', 'https://movies.sterkinekor.co.za/CDN/media/entity/get/FilmTitleGraphic/HO00003393?referenceScheme=HeadOffice&allowPlaceHolder=true')">
+                            <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/2e317a1c-f1ce-4a5f-90db-d88cc01db2d0/diqz7q1-f09abcc6-904e-4b39-97b5-9b62514b7751.png/v1/fill/w_1280,h_2066,q_80,strp/captain_america_brave_new_world_poster_2025_by_mrandrew7w7_diqz7q1-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MjA2NiIsInBhdGgiOiJcL2ZcLzJlMzE3YTFjLWYxY2UtNGE1Zi05MGRiLWQ4OGNjMDFkYjJkMFwvZGlxejdxMS1mMDlhYmNjNi05MDRlLTRiMzktOTdiNS05YjYyNTE0Yjc3NTEucG5nIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.twNOZJzs0phift96dP6fsfnTJ_6wM37SSbOFFdT2ilY"
+                                alt="Hyperdrive">
+                            <button class="icon-overlay"><a class="icon" href=""><i class="fa-solid fa-play fa-beat-fade"></i></a></button>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="upcoming4">
+                    <h2>Netflix</h2>
+                    <div class="items">
+                        <div class="item" onfocus="updateContent()" onmouseover="updateContent('Avengers: Endgame', '97% Match', '2019', '173 min', 'Latino', 'HD 720P', '5.1', 'Season 3 Coming Friday', 'Avengers: Endgame es el épico cierre de la saga del Infinito, donde los Vengadores luchan por revertir el chasquido de Thanos. Con viajes en el tiempo, sacrificios y una batalla final inolvidable, la película ofrece un emocionante adiós a varios héroes icónicos.', 'https://wallpapercave.com/wp/wp12764521.jpg')">
+                            <img src="https://cinergiaonline.com/wp-content/uploads/2019/05/avengers-endgame-01.jpg" alt="13 Reasons Why"></img>
+
+                            <button class="icon-overlay"><a class="icon" href=""><i class="fa-solid fa-play fa-beat-fade"></i></a></button>
+
+                        </div>
+                        <div class="item" onfocus="updateContent()" onmouseover="updateContent('Moana 2', '85% Match', '2019', 'TV-PG', '1 Season', 'HD', '5.1', 'New Episodes Weekly', 'Elite street racers from around the world test their limits...', 'https://musicart.xboxlive.com/7/92fb6d00-0000-0000-0000-000000000002/504/image.jpg')">
+                            <img src="https://www.negociosydestinos.com/wp-content/uploads/2024/12/mo.jpg" alt="Hyperdrive">
+                            <button class="icon-overlay"><a class="icon" href=""><i class="fa-solid fa-play fa-beat-fade"></i></a></button>
+
+
+                        </div>
+                        <div class="item" onmouseover="updateContent('Gladiador 2', '85% Match', '2019', 'TV-PG', '1 Season', 'HD', '5.1', 'New Episodes Weekly', 'Elite street racers from around the world test their limits...', 'https://i0.wp.com/cinemedios.com/wp-content/uploads/2024/07/Gladiador-2-Portada.jpg?fit=1200%2C675&ssl=1')">
+                            <img src="https://www.informador.mx/__export/1720485358773/sites/elinformador/img/2024/07/08/gladiador_version1720485307858.jpg_423682103.jpg" alt="Hyperdrive">
+                            <button class="icon-overlay"><a class="icon" href=""><i class="fa-solid fa-play fa-beat-fade"></i></a></button>
+
+                        </div>
+                        <div class="item" onmouseover="updateContent('Mufasa', '85% Match', '2019', 'TV-PG', '1 Season', 'HD', '5.1', 'New Episodes Weekly', 'Elite street racers from around the world test their limits...', 'https://www.bizcochito.es/Films/Movil/tt13186482.webp')">
+                            <img src="https://spoilerfreereviews.com/wp-content/uploads/2025/01/nHhjqeJcaQKOBCd21c1kV2DK5gm.jpg" alt="Hyperdrive">
+                            <button class="icon-overlay"><a class="icon" href=""><i class="fa-solid fa-play fa-beat-fade"></i></a></button>
+
+                        </div>
+                        <div class="item" onmouseover="updateContent('Sonic 3', '85% Match', '2019', 'TV-PG', '1 Season', 'HD', '5.1', 'New Episodes Weekly', 'Elite street racers from around the world test their limits...', 'https://forbes.pe/_next/image?url=https%3A%2F%2Fcdn.forbes.pe%2F2025%2F01%2FSonic.webp%3Fv%3D1200680&w=3840&q=75')">
+                            <img src="https://nintenduo.com/wp-content/uploads/2024/11/Poster-Sonic-3-Pelicula.webp" alt="Hyperdrive">
+
+                            <button class="icon-overlay"><a class="icon" href=""><i class="fa-solid fa-play fa-beat-fade"></i></a></button>
+                        </div>
+
+                        <div class="item" tabindex="0" onmouseover="updateContent('Capitán América: Brave New World', '85% Match', '2019', 'TV-PG', '1 Season', 'HD', '5.1', 'New Episodes Weekly', 'Elite street racers from around the world test their limits...', 'https://movies.sterkinekor.co.za/CDN/media/entity/get/FilmTitleGraphic/HO00003393?referenceScheme=HeadOffice&allowPlaceHolder=true')">
+                            <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/2e317a1c-f1ce-4a5f-90db-d88cc01db2d0/diqz7q1-f09abcc6-904e-4b39-97b5-9b62514b7751.png/v1/fill/w_1280,h_2066,q_80,strp/captain_america_brave_new_world_poster_2025_by_mrandrew7w7_diqz7q1-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MjA2NiIsInBhdGgiOiJcL2ZcLzJlMzE3YTFjLWYxY2UtNGE1Zi05MGRiLWQ4OGNjMDFkYjJkMFwvZGlxejdxMS1mMDlhYmNjNi05MDRlLTRiMzktOTdiNS05YjYyNTE0Yjc3NTEucG5nIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.twNOZJzs0phift96dP6fsfnTJ_6wM37SSbOFFdT2ilY"
+                                alt="Hyperdrive">
+                            <button class="icon-overlay"><a class="icon" href=""><i class="fa-solid fa-play fa-beat-fade"></i></a></button>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+            <script src="/Prueba2/script.js"></script>
+</body>
+
+</html>
